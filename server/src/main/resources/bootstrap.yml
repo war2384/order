@@ -23,3 +23,5 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 3000
+management:
+  context-path: /

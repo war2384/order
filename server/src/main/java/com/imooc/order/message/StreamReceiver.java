@@ -8,7 +8,8 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by weiyuhang on 2019/1/3.
+ * Created by 廖师兄
+ * 2018-02-13 18:17
  */
 @Component
 @EnableBinding(StreamClient.class)
@@ -20,18 +21,19 @@ public class StreamReceiver {
 //        log.info("StreamReceiver: {}", message);
 //    }
 
-//    /**
-//     * 接收orderDTO对象 消息
-//     * @param message
-//     */
-//    @SendTo(StreamClient.INPUT)
-//    public String process(OrderDTO message) {
-//        log.info("StreamReceiver: {}", message);
-//        return "received.";
-//    }
-
+    /**
+     * 接收orderDTO对象 消息
+     * @param message
+     */
     @StreamListener(value = StreamClient.INPUT)
-    public void process(String message) {
+    @SendTo(StreamClient.INPUT2)
+    public String process(OrderDTO message) {
+        log.info("StreamReceiver: {}", message);
+        return "received.";
+    }
+
+    @StreamListener(value = StreamClient.INPUT2)
+    public void process2(String message) {
         log.info("StreamReceiver2: {}", message);
     }
 }
